@@ -21,3 +21,7 @@ use App\Http\Controllers\IndexController;
 // });
 Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/admin/posts/all',[PostController::class, 'index']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
