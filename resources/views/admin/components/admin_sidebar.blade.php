@@ -41,13 +41,48 @@
                         </li>
                         <li class="nav-item">
                             <a href="" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Archives</p>
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Archives</p>
                             </a>
                         </li>
-                        
-                        </ul>
+        
+                            <!-- Authentication Links -->
+                        @guest
+                            @if (Route::has('login'))
+        
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p></p>
+                                    </a>
+                                </li>
+                            @endif
+
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p></p>
+                                    </a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item">
+
+                                <a class="nav-link" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('Logout') }}</p>
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </li>
+                        @endguest
                     </li>
+                    
 
                     <li class="nav-item">
                         <a href="../widgets.html" class="nav-link">
@@ -61,7 +96,7 @@
                     
                 
                 </ul>
-
+               
            
          </nav>
          <!-- /.sidebar-menu -->

@@ -1,9 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +24,14 @@ use App\Http\Controllers\IndexController;
 //     return view('welcome');
 // });
 Route::get('/', [IndexController::class, 'index'])->name('home');
-Route::get('/admin/posts/all',[PostController::class, 'index']);
 
-Auth::routes();
+Route::prefix('uche/stephen/')->group(function(){
+    Auth::routes();
+    Route::post('/login', [LoginController::class, 'login'])->name('post.login');
+    Route::post('/register', [RegisterController::class, 'register'])->name('post.register');
+});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/admin/posts/all',[PostController::class, 'index'])->name('admin');
+
+

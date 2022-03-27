@@ -233,7 +233,7 @@
       </div>
     </section>
 
-    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="contact">
+    {{-- <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="contact">
       <div class="my-auto">
         <h3 class="mb-5">What's Next?</h3>
         
@@ -246,7 +246,7 @@
       </div>
       
     
-    </section>
+    </section> --}}
 
 
   </div>
