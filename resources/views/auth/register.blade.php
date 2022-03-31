@@ -17,7 +17,7 @@
 
             axios.post(form.attr('action'),formData)
             .then(function(response) {
-              window.location = "{{route('admin')}}";  
+              window.location = "{{route('admin.posts.index')}}";  
             })
             .catch(function(error) {
                 if(error.response.status == 422){

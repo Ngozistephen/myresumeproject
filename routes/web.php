@@ -7,7 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-
+use Illuminate\Routing\RouteGroup;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +32,13 @@ Route::prefix('uche/stephen/')->group(function(){
 });
 
 
-Route::get('/admin/posts/all',[PostController::class, 'index'])->name('admin');
 
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(){
+
+    // protectting the admin side with middleware
+    Route::get('/posts',[PostController::class, 'index'])->name('admin.posts.index');
+    Route::get('/posts/create',[PostController::class, 'create'])->name('admin.posts.create');
+    Route::get('/posts/edit',[PostController::class, 'edit'])->name('admin.posts.edit');
+
+});
 
