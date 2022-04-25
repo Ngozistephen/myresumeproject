@@ -23,6 +23,9 @@
     <!-- Custom styles for this template -->
     <link href="css/resume.min.css" rel="stylesheet">
 
+    {{-- <!--load all Font Awesome styles  installed-->
+    <link href="/css/fa/all.css" rel="stylesheet"> --}}
+
   </head>
 
   <body id="page-top">

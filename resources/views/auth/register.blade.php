@@ -17,7 +17,7 @@
 
             axios.post(form.attr('action'),formData)
             .then(function(response) {
-              window.location = "{{route('admin.posts.index')}}";  
+              window.location = "{{route('admin.porfolios.index')}}";  
             })
             .catch(function(error) {
                 if(error.response.status == 422){
@@ -44,7 +44,7 @@
         <div class="card-body register-card-body">
             <p class="login-box-msg" id="registerFormTitle">Register a new membership</p>
 
-            <form id="registerForm" action="{{route('post.register')}}" method="post">
+            <form id="registerForm" action="{{route('porfolio.register')}}" method="post">
                 <div class="input-group mb-3">
                     <input name="firstname" type="text" class="form-control" placeholder="First name">
                     <div class="input-group-append">
@@ -104,7 +104,7 @@
                 @csrf
             </form>
 
-            <a href="{{ route('login') }}" class="text-center">I already have a membership</a>
+            <a href="{{route('porfolio.login')}}" class="text-center">I already have a membership</a>
         </div>
         <!-- /.form-box -->
     </div><!-- /.card -->

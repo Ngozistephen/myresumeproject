@@ -30,8 +30,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-       {{-- Axois  --}}
-      <script src="/js/axios.min.js"></script>
+    {{-- Axois  --}}
+    <script src="/js/axios.min.js"></script>
 
   
 

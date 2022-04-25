@@ -6,32 +6,32 @@
 @section('scripts')
 {{-- learn Jquery --}}
     <script> 
-        var form = $('#loginForm');
-        form.on('submit', function(event) {
-            event.preventDefault();
-           $('#errorMsg').remove();
+          var form = $('#loginForm');
+          form.on('submit', function(event) {
+              event.preventDefault();
+            $('#errorMsg').remove();
 
-    // the 'this' is refers to the HTML element to which that event is attached to... 
-            var formData = new FormData(this);
+      // the 'this' is refers to the HTML element to which that event is attached to... 
+              var formData = new FormData(this);
 
-            axios.post(form.attr('action'), formData)
-            .then(function(response) {
-               window.location = "{{route('admin.posts.index')}}" ;
-             })
-            
-            .catch(function(error) {
-                console.log(error.response.data.errors.email);
-                if(error.response.status == 422){
-                    var errMsg = Object.values(error.response.data.errors)[0][0]
-                    var div = $('<div></div>').addClass('alert alert-danger').attr('id', 'errorMsg').text(errMsg);
-                    div.insertAfter($('#loginFormTitle'));
-                }else{
-                    var errMsg = 'An unexpected error has occured. Please try again later.';
-                    var div = $('<div></div>').addClass('alert alert-danger').attr('id', 'errorMsg').text(errMsg);
-                    div.insertAfter($('#loginFormTitle'));
-                }
-            })
-        })
+              axios.post(form.attr('action'), formData)
+              .then(function(response) {
+                window.location = "{{route('admin.porfolios.index')}}" ;
+              })
+              
+              .catch(function(error) {
+                  console.log(error.response.data.errors.email);
+                  if(error.response.status == 422){
+                      var errMsg = Object.values(error.response.data.errors)[0][0]
+                      var div = $('<div></div>').addClass('alert alert-danger').attr('id', 'errorMsg').text(errMsg);
+                      div.insertAfter($('#loginFormTitle'));
+                  }else{
+                      var errMsg = 'An unexpected error has occured. Please try again later.';
+                      var div = $('<div></div>').addClass('alert alert-danger').attr('id', 'errorMsg').text(errMsg);
+                      div.insertAfter($('#loginFormTitle'));
+                  }
+              })
+          })
     </script>
 @endsection
 
@@ -45,7 +45,7 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg" id="loginFormTitle">Sign in to start your session</p>
 
-      <form id= "loginForm" action="{{route('post.login')}}" method="post">
+      <form id= "loginForm" action="{{route('porfolio.login')}}" method="post">
         <div class="input-group mb-3">
           <input name="email"  type="email" class="form-control" placeholder="Email">
           <div class="input-group-append">

@@ -15,8 +15,22 @@
     <link rel="stylesheet" href="/adminlte/dist/css/adminlte.min.css">
     <!-- summernote -->
     <link rel="stylesheet" href="/adminlte/plugins/summernote/summernote-bs4.css">
+
+    
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    
+    <!-- daterange picker  -->
+    <link rel="stylesheet" href="/adminlte/plugins/daterangepicker/daterangepicker.css">
+    <!-- Select2 for the skill in create -->
+    <link rel="stylesheet" href="/adminlte/plugins/select2/css/select2.min.css">
+
+    <!--load all Font Awesome styles  installed-->
+    <link href="/css/fa/all.css" rel="stylesheet">
+
+    
+
+   
 
     
 
@@ -53,11 +67,14 @@
     <script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="/adminlte/dist/js/adminlte.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="/adminlte/dist/js/pages/dashboard.js"></script>
+    {{-- <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="/adminlte/dist/js/pages/dashboard.js"></script> --}}
     <!-- AdminLTE for demo purposes -->
     <script src="/adminlte/dist/js/demo.js"></script>
 
+    <script src="/js/es6_object_polyfill.js"></script>
+    {{-- Axois  --}}
+    <script src="/js/axios.min.js"></script>
     
 
 
