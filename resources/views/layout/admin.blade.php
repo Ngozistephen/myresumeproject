@@ -15,8 +15,32 @@
     <link rel="stylesheet" href="/adminlte/dist/css/adminlte.min.css">
     <!-- summernote -->
     <link rel="stylesheet" href="/adminlte/plugins/summernote/summernote-bs4.css">
+
+    
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    
+    <!-- daterange picker  -->
+    <link rel="stylesheet" href="/adminlte/plugins/daterangepicker/daterangepicker.css">
+    <!-- Select2 for the skill in create -->
+    <link rel="stylesheet" href="/adminlte/plugins/select2/css/select2.min.css">
+
+    <!--load all Font Awesome styles  installed-->
+    <link href="/css/fa/all.css" rel="stylesheet">
+    
+    {{-- Pnotify  css--}}
+    @include('plugins.pnotify.styles')
+
+   
+        {{-- <style>
+            .card-header.no-pseudo-content::after{
+            content:none;
+            }   
+
+        </style --}}
+
+    
+
 
 
     @yield('styles')
@@ -31,75 +55,10 @@
        @include('admin.components.admin_sidebar')
 
 
-        {{-- @yield('content') --}}
+        @yield('content')
 
     
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>DataTables</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">DataTables</li>
-                    </ol>
-                </div>
-                </div>
-            </div><!-- /.container-fluid -->
-            </section>
-
-            <!-- Main content -->
-            <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                <div class="col-12">
-
-                    <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">DataTable with default features</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>S/N</th>
-                            <th>Post</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        
-                        </tr>
-                        
-                        </tbody>
-                        </table>
-                    </div>
-                    <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
-                </div>
-                <!-- /.col -->
-                </div>
-                <!-- /.row -->
-            </div>
-            <!-- /.container-fluid -->
-            </section>
-            <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper --> 
+        
 
         {{-- <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
@@ -115,11 +74,21 @@
     <script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="/adminlte/dist/js/adminlte.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="/adminlte/dist/js/pages/dashboard.js"></script>
+    {{-- <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="/adminlte/dist/js/pages/dashboard.js"></script> --}}
     <!-- AdminLTE for demo purposes -->
     <script src="/adminlte/dist/js/demo.js"></script>
 
+    <script src="/js/es6_object_polyfill.js"></script>
+    {{-- Axois  --}}
+    <script src="/js/axios.min.js"></script>
+    
+
+
+    @include('plugins.pnotify.scripts')
+
+    @include('plugins.pnotify.notification')
+  
 
     @yield('scripts')
 </body>
