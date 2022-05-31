@@ -16,23 +16,12 @@ class CheckAdmin
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
-<<<<<<< HEAD
-    {   
-
-        if(Auth::user()->is_admin){
-            return $next($request);
-        }
-        return redirect('/');
-=======
     {
-        
-    
         if(Auth::user()->is_admin){
             return $next($request); 
         }
         
         return redirect('/');
        
->>>>>>> develop
     }
 }
