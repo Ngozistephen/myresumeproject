@@ -27,10 +27,17 @@
 
     <!--load all Font Awesome styles  installed-->
     <link href="/css/fa/all.css" rel="stylesheet">
-
     
+    {{-- Pnotify  css--}}
+    @include('plugins.pnotify.styles')
 
    
+        {{-- <style>
+            .card-header.no-pseudo-content::after{
+            content:none;
+            }   
+
+        </style --}}
 
     
 
@@ -77,6 +84,11 @@
     <script src="/js/axios.min.js"></script>
     
 
+
+    @include('plugins.pnotify.scripts')
+
+    @include('plugins.pnotify.notification')
+  
 
     @yield('scripts')
 </body>

@@ -3,7 +3,7 @@
     @section('page-title', 'Create')
 
 @section('scripts')
-    {{-- <script src="/js/custom/fix-custom-file-select.js"></script> --}}
+    <script src="/js/custom/fix-custom-file-select.js"></script>
     <!-- Summernote -->
     <script src="/adminlte/plugins/summernote/summernote-bs4.min.js"></script>
     {{-- is for data range picker --}}
@@ -58,8 +58,8 @@
           formData.delete('dates');
         //  deleting the dates and getting the enddate and startdate
           formData.append('content', content);
-          formData.append('endDate', enddate);
           formData.append('startDate', startdate);
+          formData.append('endDate', enddate);
 
           axios.post("{{route('admin.porfolios.store')}}", formData).then(function(response){
             // request successful, the post was saved.

@@ -27,8 +27,8 @@ class StorePorfolioRequest extends FormRequest
             'job_title' => ['required','min:3','string'],
             'project_name' => ['required','min:3','string'],
             'content' => ['required','min:10','string'],
-            'endDate' => ['required','date'],
             'startDate' => ['required','date'],
+            'endDate' => ['required','date'],
             'skill' => ['required','integer','exists:skills,id'],
             'feature_img' => ['required','image'],
         ];

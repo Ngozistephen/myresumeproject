@@ -19,10 +19,12 @@
 
          <!-- Sidebar Menu -->
          <nav class="mt-2">
+             
+            
 
              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="../widgets.html" class="nav-link">
+                    <a href="{{route('admin.contacts.index')}}" class="nav-link data-toggle="modal" data-target="#exampleModal">
                          <i class=" nav-icon fa-solid fa-user"></i>
                         <p> Admin  <span class="right badge badge-danger">New</span></p>
                     </a>
@@ -69,13 +71,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{route('admin.porfolios.create')}}" class="nav-link">
+                        <a href="{{route('admin.trainings.create')}}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Create</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href={{route('admin.porfolios.index')}} class="nav-link">
+                        <a href={{route('admin.trainings.index')}} class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>All</p>
                         </a>
@@ -109,7 +111,7 @@
             <li class="nav-item">
                 <a href="{{route('admin.skills.index')}}" class="nav-link">
                 {{-- <i class="nav-icon fas fa-th"></i> --}}
-                <i class=" nav-icon fa-solid fa-book-journal-whills"></i>
+                <i class=" nav-icon fa-solid fas fa-pencil-alt"></i>
                 <p>
                     Skills
                     <span class="right badge badge-danger">New</span>

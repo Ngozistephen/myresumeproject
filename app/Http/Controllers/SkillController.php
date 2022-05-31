@@ -10,11 +10,14 @@ use Illuminate\Http\Request;
 class SkillController extends Controller
 {
     public function index(){
-        return view('admin.skills.all');
+
+        $skill = Skill::all();
+
+        return view('admin.skills.all', ['skills' => $skill]);
     }
 
     public function create(){
-        return view ('admin.skills.all');
+        return view('admin.skills.all');
     }
 
 
@@ -28,10 +31,9 @@ class SkillController extends Controller
         $skill = new Skill;
 
         $skill->lang_name = $request->lang_name;
-        // is this thing correct
-        $skill->porfolio_id = request('porfolio_id'); 
         $skill->lang_image = $this->upload_image($request);
-
+        
+        $skill->porfolio()->attach();
         $skill->save();
 
         return response()->json('ok', 201);
@@ -51,5 +53,21 @@ class SkillController extends Controller
 
     public function edit(){
         return view ('admin.skills.update');
+    }
+
+    public function delete(Request $request, $slug){
+        $skill = Skill::where('slug', $slug)->firstorfail();
+        
+        $skill->delete();
+
+        $notification = [
+            'type' => 'success',
+            'title' => 'Done',
+            'text' => 'Skill Deleted Successfully.'
+        ];
+
+        $request->session()->flash('notification', json_encode($notification)); 
+        
+        return response()->json([], 204);
     }
 }

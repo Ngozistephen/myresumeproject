@@ -20,29 +20,29 @@
                   "autoWidth": false,
                 });
       
-                // $('.delBtn').click(function(e){
-                //    __confirmAction('Are You Sure ?', 'Post will be deleted').then(function(reason){
-                //     //  user really wants to delete the post
+                $('.delBtn').click(function(e){
+                   __confirmAction('Are You Sure ?', 'Porfolio will be deleted').then(function(reason){
+                    //  user really wants to delete the post
       
-                //         var slug = $(this).data('slug');
-                //       // $(this).data('slug'); for jQuery or  this.dataset.slug (is for javascript)
+                        var slug = $(this).data('slug');
+                      // $(this).data('slug'); for jQuery or  this.dataset.slug (is for javascript)
       
       
-                //         axios.delete(`/admin/posts/${slug}`).then(function(response){
-                //           //all clear
+                        axios.delete(`/admin/porfolios/${slug}`).then(function(response){
+                          //all clear
       
-                //           window.location.reload();
+                          window.location.reload();
       
-                //         }).catach(function(error){
-                //           // error occured
-                //           console.log(Error); 
+                        }).catch(function(error){
+                          // error occured
+                          console.log(Error); 
       
-                //         });
+                        });
                   
       
-                //   }.bind(this)).catch(function(reason){});
+                    }.bind(this)).catch(function(reason){});
                    
-                // });
+                });
             })
           </script>
     @endsection
@@ -56,12 +56,12 @@
                     <div class="container-fluid">
                         <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>DataTables</h1>
+                            <h1>Porfolios</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">DataTables</li>
+                            <li class="breadcrumb-item active">Porfolios</li>
                             </ol>
                         </div>
                         </div>
@@ -82,32 +82,46 @@
                                 <tr>
                                     <th style="width: 20px">S/N</th>
                                     <th style="width: 100px">Job Title</th>
-                                    <th style="width: 100px">Project Name</th>
-                                    <th>Description</th>
-                                    <th style="width: 100px">Date Range</th>
-                                    <th style="width: 100px">Skills Used</th>
+                                    <th style="width: 200px">Project Name</th>
+                                    <th style="width: 50px">End Date</th>
+                                    <th style="width: 50px">Start Date</th>
+                                    {{-- <th style="width: 100px">Skills Used</th> --}}
                                     <th style="width: 50px">Status</th>
                                     <th style="width: 100px">Action</th>
                                 
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <a title ="Preview" href="#" class="btn  btn-sm btn-primary"><i class ="fas fa-eye"></i></a>
-                                        <a title ="Edit" href="#" class="btn btn-sm btn-warning"><i class ="fas fa-edit"></i></a>
-                                        <button  data-slug="#" title ="Delete" type="button" class="delBtn btn btn-sm btn-danger"><i class ="fas fa-trash"></i></button>
-                                    </td>
-                                
-                                </tr>
-                                
+                                    @foreach ($porfolios as $idx => $porfolio)
+                                        
+                                        <tr>
+                                            <td>{{$idx + 1}}</td>
+                                            <td>{{$porfolio->job_title}}</td>
+                                            <td>
+                                                {{$porfolio->project_name}}
+
+                                                {{-- <div class="small text-muted"> Skills used  {{$porfolio->skill->lang_name}}</div> --}}
+                                            
+                                            </td>
+                                            <td>{{$porfolio->start_date}}</td>
+                                            <td>{{$porfolio->end_date}}</</td>
+                                            
+                                            <td>
+                                                @if ($porfolio->published_at)
+                                                         <span class="badge badge-success">published</span>   
+                                                 @else 
+                                                        <span class="badge badge-dark">unpublished</span>
+                                                @endif 
+                                            </td>
+                                            <td>
+                                                <a title ="Preview" href="{{route('admin.porfolios.preview', ['slug'=> $porfolio->slug])}}" class="btn  btn-sm btn-primary previewModalBtn"><i class ="fas fa-eye"></i></a>
+                                                <a title ="Edit" href="{{route('admin.porfolios.edit', ['slug'=> $porfolio->slug])}}" class="btn btn-sm btn-warning"><i class ="fas fa-edit"></i></a>
+                                                <button  data-slug="{{$porfolio->slug}}" title ="Delete" type="button" class="delBtn btn btn-sm btn-danger"><i class ="fas fa-trash"></i></button>
+                                            </td>
+                                        
+                                        </tr>
+                                    @endforeach
+                                    
                                 </tbody>
                                 </table>
                             </div>

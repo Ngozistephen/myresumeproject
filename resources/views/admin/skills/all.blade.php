@@ -14,7 +14,7 @@
         <script src="/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
         <script src="/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 
-        {{-- <script>
+        <script>
             $(function(){
                   $("#example1").DataTable({
                   "responsive": true,
@@ -22,14 +22,14 @@
                 });
       
                 $('.delBtn').click(function(e){
-                   __confirmAction('Are You Sure ?', 'Post will be deleted').then(function(reason){
+                   __confirmAction('Are You Sure ?', 'Skill will be deleted').then(function(reason){
                     //  user really wants to delete the post
       
                         var slug = $(this).data('slug');
                       // $(this).data('slug'); for jQuery or  this.dataset.slug (is for javascript)
       
       
-                        axios.delete(`/admin/posts/${slug}`).then(function(response){
+                        axios.delete(`/admin/skills/${slug}`).then(function(response){
                           //all clear
       
                           window.location.reload();
@@ -45,11 +45,11 @@
                    
                 });
             })
-        </script> --}}
+        </script>
 
         <script>
           // For the Create Tag. it is done with javascript
-          $('#createSkillForm').submit(function(e){
+          $('#createSkillForm').submit(function(e){ 
               e.preventDefault();
               $('#formErrs').remove();
               var formData = new FormData(this);
@@ -58,7 +58,7 @@
     
               axios.post("{{route('admin.skills.store')}}", formData).then(function(response){
                 // request successful, the post was saved.
-                window.location.reload();
+                window.location.reload(true);
                 // passing true inside the reload will wipe out all the data in the post or live it empty.
     
               }).catch(function(error){
@@ -91,6 +91,30 @@
           fixCustomFileSelectLabel('featuredImgInput');
         </script>
 
+<script>
+
+  (function($){
+    
+    $('.editModalBtn').on('click', function(event){
+
+      $('#exampleModalEdit').modal('show');
+
+      let skill = $(this).data('skill');
+
+      $('#editSkillControl').val(skill.lang_name);
+
+      $('#featuredImgInput').val(skill.lang_image);
+
+      let form = $('#editSkillForm')
+
+      form[0].action = '/admin/skills/'+skill.slug;
+
+    });
+    
+  })(jQuery);
+
+</script>
+
        
     @endsection
 
@@ -103,12 +127,12 @@
                     <div class="container-fluid">
                         <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>DataTables</h1>
+                            <h1>Skills</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">DataTables</li>
+                            <li class="breadcrumb-item active">Skills</li>
                             </ol>
                         </div>
                         </div>
@@ -120,95 +144,16 @@
 
                     {{-- <form class="form-group" action="/update/{{$editCommunity->id}}" method="post" id="editCommunityForm_{{$editCommunity->id}}"> --}}
                       <!-- Modal For Edit Skill-->
-                      <div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelEdit" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <form method="post" id="editSkillForm">
-                              <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabelEdit">Language Name Edit</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                              </div>
-                              <div class="modal-body">
-                                  <input id="editSkillControl"  name="lang_name"  class="form-control" placeholder="Language/ Framework Name">
-
-                                  <div class="form-group">
-                                        <div class="btn btn-default btn-file">
-                                            <i class="fas fa-paperclip"></i> Language Image
-                                            <input id="featuredImgInput" accept="image/*" type="file" name="lang_image">
-                                        </div>
-
-                                        <label class="d-block" for="featuredImgInput"></label>
-                                        <p class="help-block">Max. 32MB</p>
-                                  </div>
-
-                                    <div class="form-group">
-                                        <div class="custom-control custom-switch">
-                                            <input   name="published" type="checkbox" class="custom-control-input" id="customSwitch1">
-                                            <label class="custom-control-label" for="customSwitch1">Publish</label>
-                                        </div>
-                                    </div>
-                              </div>
-                              <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  <button type="submit" form="editSkillForm" class="btn btn-primary">Save changes</button>
-                              </div>
-              
-                              @csrf 
-                            </form>
-                          </div>
-                    
-                        </div>
-                      </div> 
+                    @include('admin.skills.edit')
   
-                      <!-- Modal For Create Skill-->
-                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <form action="{{route('admin.skills.store')}}" method="post" id="createSkillForm">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">language/framework Name</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                <input  name="lang_name"  class="form-control" style="margin-bottom: 30px" placeholder="language/framework Name">
-
-
-                                <div class="form-group">
-                                    <div class="btn btn-default btn-file">
-                                        <i class="fas fa-paperclip"></i> Language Image
-                                        <input id="featuredImgInput" accept="image/*" type="file" name="lang_image">
-                                    </div>
-
-                                    <label class="d-block" for="featuredImgInput"></label>
-                                    <p class="help-block">Max. 32MB</p>
-                                </div>
-
-                              
-                              </div>
-
-                                
-
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" form="createSkillForm" class="btn btn-primary">Save</button>
-                              </div>
-              
-                              @csrf 
-                            </form>
-                          </div>
-                        </div>
-                      </div> 
-                  </section>
+                    @include('admin.skills.create')
+                </section>
 
                 <!-- Main content -->
                 <section class="content">
                         <div class="card">
                             <div class="card-header d-flex justify-content-between no-pseudo-content">
-                                <h3 class="card-title">Manage Porfolio</h3>
+                                <h3 class="card-title">Manage Skills</h3>
                                 <a href="" class="btn btn-sm btn-primary" style="margin-left: 1000px" data-toggle="modal" data-target="#exampleModal">Create</a>
                             </div>
                                 <!-- /.card-header -->
@@ -218,20 +163,28 @@
                                 <tr>
                                     <th style="width: 50px">S/N</th>
                                     <th>Language/Framework Name</th>
-                                    <th style="width: 100px">Status</th>
+                                    <th style="width: 100px">Action</th>
+
                                     
-                                </tr>
+                                  </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <button data-tag="#" title ="Edit" href="" class="btn btn-sm btn-warning editModalBtn"><i class ="fas fa-edit"></i></button>
-                                        <button  data-slug="#" title ="Delete" type="button" class="delBtn btn btn-sm btn-danger"><i class ="fas fa-trash"></i></button>
-                                    </td>
-                                
-                                </tr>
+
+                                 @foreach ($skills as $idx => $skill)
+                                    <tr>
+                                        <td>{{$idx + 1}}</td>
+                                        <td>
+                                          <a href="">{{$skill->lang_name}}</a>
+                                        </td>
+                                        <td>
+                                            <button data-skill="{{$skill}}" title ="Edit" href="" class="btn btn-sm btn-warning editModalBtn"><i class ="fas fa-edit"></i></button>
+                                            <button  data-slug="{{$skill->slug}}" title ="Delete" type="button" class="delBtn btn btn-sm btn-danger"><i class ="fas fa-trash"></i></button>
+
+
+                                        </td>
+                                    
+                                    </tr>
+                                 @endforeach   
                                 
                                 </tbody>
                                 </table>

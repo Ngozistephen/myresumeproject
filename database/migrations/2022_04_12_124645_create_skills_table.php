@@ -19,13 +19,6 @@ class CreateSkillsTable extends Migration
             $table->string('slug')->nullable();
             $table->string('lang_image');
             $table->timestamps();
-
-            // for one to Many relationship. the many side bears the foregin key
-            $table->unsignedBigInteger('porfolio_id');
-            $table->foreign('porfolio_id')
-                ->references('id')
-                ->on('porfolios')
-                ->onDelete('cascade');
         });
     }
 
