@@ -11,7 +11,7 @@ class Contact extends Model
     use HasFactory;
     protected $fillable = ['address', 'phone_number','social_medialinks'];
 
-    protected $casts = ['social_medialinks' => 'array'];
+    protected $casts = ['social_medialinks' => 'json'];
 
     public function user(){
         return $this->belongsTo(User::class);

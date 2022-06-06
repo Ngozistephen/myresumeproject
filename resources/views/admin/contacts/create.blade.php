@@ -2,7 +2,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                    <form action="{{route('admin.contacts.store')}}" method="post" id="createContactForm">
+                    <form method="post" id="createContactForm" action=" ">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Admin Details</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -10,10 +10,10 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <input  name="address"  class="form-control" style="margin-bottom: 30px" placeholder="Address">
+                            <input  name="address" id="address" class="form-control" style="margin-bottom: 30px" placeholder="Address">
 
                             <div class="form-group">
-                                <div class="input-group">
+                                <div class="input-group" id="phone_number">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                     </div>
@@ -28,7 +28,7 @@
                             </div>
 
 
-                            <div class="form-group">
+                            <div class="form-group" id="social_medialinks">
                                 <div class="row">
                                     <div class="col-md-6">
                                         Social Media Company:
@@ -40,7 +40,7 @@
                                 @for ($i=0; $i <= 3; $i++)
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input type="text" name="social_medialinks[{{ $i }}][key]z" class="form-control" value="{{ old('social_medialinks['.$i.'][key]') }}">
+                                        <input type="text" name="social_medialinks[{{ $i }}][key]" class="form-control" value="{{ old('social_medialinks['.$i.'][key]') }}">
                                     </div>
                                     <div class="col-md-6">
                                         <input type="text" name="social_medialinks[{{ $i }}][value]" class="form-control" value="{{ old('social_medialinks['.$i.'][value]') }}">
@@ -66,7 +66,7 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" form="createSkillForm" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
 
                         @csrf 

@@ -52,14 +52,13 @@
 
         <script>
           // For the Create Tag. it is done with javascript
-          $('#createSkillForm').submit(function(e){ 
+          $('#createContactForm').submit(function(e){ 
+            // console.log("error");
               e.preventDefault();
               $('#formErrs').remove();
               var formData = new FormData(this);
-    
-              
-    
-              axios.post("{{route('admin.skills.store')}}", formData).then(function(response){
+            
+              axios.post(this.action, formData).then(function(response){
                 // request successful, the post was saved.
                 window.location.reload(true);
                 // passing true inside the reload will wipe out all the data in the post or live it empty.
@@ -81,13 +80,13 @@
                           var li = $('<li></li>').text(err)
                           ul.append(li);
                       }
-                      $('#createSkillForm').prepend(ul);
+                      $('#createContactForm').prepend(ul);
                   }
                 }else{
                   var ul = $('<ul></ul>').addClass('list-unstyled alert alert-danger').attr({id: 'formErrs'});
                   var li = $('<li></li>').text('An unexpected error has occured please try again later');
                   ul.append(li);
-                  $('#createSkillForm').prepend(ul);
+                  $('#createContactForm').prepend(ul);
                 } 
               });
           });
@@ -95,27 +94,31 @@
         </script>
 
 <script>
-
-  // It the prefilling is done without javascript
-  // (function($){
+  (function($){
     
-  //   $('.editModalBtn').on('click', function(event){
+    $('.editModalBtn').on('click', function(event){
 
-  //     $('#exampleModalEdit').modal('show');
+      $('#exampleModalEdit').modal('show');
 
-  //     let skill = $(this).data('skill');
+      let user = $(this).data('user');
 
-  //     $('#editSkillControl').val(skill.lang_name);
+      $('#compose-textarea').val(user.about);
 
-  //     $('#featuredImgInput').val(skill.lang_image);
+      $('#featuredImgInput').val(user.profile_img);
 
-  //     let form = $('#editSkillForm')
+      $('#address').val(user.address);
 
-  //     form[0].action = '/admin/skills/'+skill.slug;
+      $('#phone_number').val(user.phone_number);
 
-  //   });
+      $('#social_medialinks').val(user.social_medialinks);
+
+      let form = $('#createContactForm')
+
+      form.attr('action', user.id + '/contacts');
+
+    });
     
-  // })(jQuery);
+  })(jQuery);
 
 </script>
 
@@ -171,7 +174,7 @@
                         <div class="card">
                             <div class="card-header d-flex justify-content-between no-pseudo-content">
                                 <h3 class="card-title">Admin Details</h3>
-                                <a href="" class="btn btn-sm btn-primary" style="margin-left: 1000px" data-toggle="modal" data-target="#exampleModal">Create</a>
+                                <a href="" class="btn btn-sm btn-primary" style="margin-left: 1000px">Create</a>
                             </div>
                                 <!-- /.card-header -->
                             <div class="card-body">
@@ -199,7 +202,7 @@
                                         <td>{{$user->about}}</td>
                                         <td>
                                             <a title ="Preview" href="#" class="btn  btn-sm btn-primary"><i class ="fas fa-eye"></i></a>
-                                            <button data-tag="#" title ="Edit" href="" class="btn btn-sm btn-warning editModalBtn"><i class ="fas fa-edit"></i></button>
+                                            <button data-user="{{$user}}" title ="Edit" href="" class="btn btn-sm btn-warning editModalBtn" data-toggle="modal" data-target="#exampleModal"><i class ="fas fa-edit"></i></button>
                                             <button  data-slug="#" title ="Delete" type="button" class="delBtn btn btn-sm btn-danger"><i class ="fas fa-trash"></i></button>
                                         </td>
                                     

@@ -81,7 +81,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 
     // Contact Section
     Route::get('/contacts', [ContactController::class, 'index'])->name('admin.contacts.index');
-    Route::post('/contacts', [ContactController::class, 'store'])->name('admin.contacts.store');
+    Route::post('/{user}/contacts', [ContactController::class, 'store'])->name('admin.contacts.store');
    
     
 });

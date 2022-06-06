@@ -32,12 +32,14 @@
     @include('plugins.pnotify.styles')
 
    
-        {{-- <style>
-            .card-header.no-pseudo-content::after{
-            content:none;
-            }   
+        <style>
+            /* Highlighting the sidebar */
+             [class*="sidebar-dark-"] .nav-sidebar > .nav-item:hover > .nav-link{
+                 background-color:#bd5d38;
+                 color: white;
+             }
 
-        </style --}}
+        </style
 
     
 
