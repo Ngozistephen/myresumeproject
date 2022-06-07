@@ -1,5 +1,5 @@
 <!-- Modal For Create Skill-->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModalCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                     <form method="post" id="createContactForm" action=" ">
@@ -13,11 +13,11 @@
                             <input  name="address" id="address" class="form-control" style="margin-bottom: 30px" placeholder="Address">
 
                             <div class="form-group">
-                                <div class="input-group" id="phone_number">
+                                <div class="input-group" >
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                     </div>
-                                    <input type="text" class="form-control"data-inputmask="'mask': ['999-999-9999 [x99999]', '+99 99 99 9999[9]-9999']" data-mask placeholder="Phone Number">
+                                    <input type="text" id="phone_number" name="phone_number" class="form-control"data-inputmask="'mask': ['999-999-9999 [x99999]', '+99 99 99 9999[9]-9999']" data-mask="" placeholder="Phone Number">
                                 </div>
                                 <!-- /.input group -->
                             </div>

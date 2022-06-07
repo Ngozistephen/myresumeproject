@@ -6,6 +6,13 @@
          <link rel="stylesheet" href="/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
          <link rel="stylesheet" href="/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
         
+         <style>
+          .user-info{
+              font-size: 1rem;
+              font-style: italic;
+          };
+          
+        </style>
     @endsection
     @section('scripts')
             <!-- DataTables -->
@@ -57,6 +64,10 @@
               e.preventDefault();
               $('#formErrs').remove();
               var formData = new FormData(this);
+
+              var about = $('#compose-textarea').summernote('code');
+
+              formData.append('about', about);
             
               axios.post(this.action, formData).then(function(response){
                 // request successful, the post was saved.
@@ -94,11 +105,12 @@
         </script>
 
 <script>
+  // Create Section
   (function($){
     
-    $('.editModalBtn').on('click', function(event){
+    $('.createModalBtn').on('click', function(event){
 
-      $('#exampleModalEdit').modal('show');
+      $('#exampleModalCreate').modal('show');
 
       let user = $(this).data('user');
 
@@ -118,9 +130,69 @@
 
     });
     
-  })(jQuery);
+  })(jQuery);  
 
 </script>
+<script>
+  // Edit Section
+  (function($){
+    
+    $('.editModalBtn').on('click', function(event){
+
+      $('#exampleModalEdit').modal('show');
+
+      let user = $(this).data('user');
+
+      $('#compose-textarea').val(user.about);
+
+      $('#featuredImgInput').val(user.profile_img);
+
+      $('#address').val(user.address);
+
+      $('#phone_number').val(user.phone_number);
+
+      $('#social_medialinks').val(user.social_medialinks);
+
+      let form = $('#editContactForm')
+
+      form[0].action = '/admin/contacts/'+user.slug;
+      
+      
+
+    });
+    
+  })(jQuery);
+</script>
+
+<script>
+
+  // for prefilling that shows a content preview
+      (function($){
+        
+        $('.previewModalBtn').on('click', function(event){
+    
+          $('#exampleModalPreview').modal('show');
+    
+          let user = $(this).data('user');
+  
+          $('#featuredImgInputpreview').text(user.profile_img);
+
+          $('#compose-textareapreview').html(user.about);
+  
+          $('#addresspreview').text(user.address);
+  
+          $('#phone_numberpreview').text(user.phone_number);
+          
+          $('#emailpreview').email(user.email); 
+
+          $('#social_medialinkspreview').text(user.social_medialinks);
+  
+    
+        });
+        
+      })(jQuery);
+    
+  </script>
 
 <script>
   $(function () {
@@ -134,6 +206,24 @@
     $('#compose-textarea').summernote('code','');
 
   })
+
+  $('#phone_number').mask();
+</script>
+<script>
+  // For Edit the Summernote id should be unique 
+
+  $(function () {
+    //Add text editor
+      $('#compose-textareaEdit').summernote({
+        placeholder: 'tell us about yourself?',
+        focus:true,
+        minHeight:100
+      });
+      // $('#compose-textareaEdit').summernote('code','');     
+
+  })
+
+  $('#phone_numberEdit').mask();
 </script>
 
        
@@ -165,7 +255,8 @@
 
                        
                   @include('admin.contacts.create')
-                    
+                  @include('admin.contacts.edit')
+                  @include('admin.contacts.preview')
                       
                 </section>
 
@@ -174,7 +265,7 @@
                         <div class="card">
                             <div class="card-header d-flex justify-content-between no-pseudo-content">
                                 <h3 class="card-title">Admin Details</h3>
-                                <a href="" class="btn btn-sm btn-primary" style="margin-left: 1000px">Create</a>
+                                {{-- <a href="" class="btn btn-sm btn-primary" style="margin-left: 1000px">Create</a> --}}
                             </div>
                                 <!-- /.card-header -->
                             <div class="card-body">
@@ -186,7 +277,7 @@
                                     <th style="width: 100px">Lastname</th>
                                     <th style="width: 100px">Email Address</th>
                                     <th>About</th>
-                                    <th style="width: 150px">Action</th>
+                                    <th style="width: 200px">Action</th>
 
                                     
                                   </tr>
@@ -199,10 +290,11 @@
                                         <td>{{$user->firstname}}</td>
                                         <td>{{$user->lastname}}</td>
                                         <td>{{$user->email}}</td>
-                                        <td>{{$user->about}}</td>
+                                        <td>{!!$user->about!!}</td>
                                         <td>
-                                            <a title ="Preview" href="#" class="btn  btn-sm btn-primary"><i class ="fas fa-eye"></i></a>
-                                            <button data-user="{{$user}}" title ="Edit" href="" class="btn btn-sm btn-warning editModalBtn" data-toggle="modal" data-target="#exampleModal"><i class ="fas fa-edit"></i></button>
+                                            <button data-user= "{{$user}}" title ="Preview" type="button" href="#" class="btn  btn-sm btn-primary previewModalBtn"  data-toggle="modal" data-target="#exampleModalPreview"><i class ="fas fa-eye"></i></button>
+                                            <button data-user="{{$user}}" title ="Create" type="button" href="" class="btn btn-sm btn-warning createModalBtn" data-toggle="modal" data-target="#exampleModalCreate"><i class ="fas fa-edit"></i></button>
+                                            <button  data-user="{{$user}}" title ="Edit" type="button" class="btn btn-sm btn-danger editModalBtn"  data-toggle="modal" data-target="#exampleModalEdit" ><i class ="fas fa-glasses"></i></button>
                                             <button  data-slug="#" title ="Delete" type="button" class="delBtn btn btn-sm btn-danger"><i class ="fas fa-trash"></i></button>
                                         </td>
                                     

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Contact;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -44,6 +45,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'is_admin'=>'boolean',
     ];
+
+    public static function boot(){
+        parent::boot();
+
+        static::created(function($user){
+            $user->slug =  Str::slug($user->lastname) . $user->id;
+            $user->save();
+        });
+    }
 
 
     public function contact(){

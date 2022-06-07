@@ -5,8 +5,8 @@
 
       <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
         <div class="my-auto">
-          <h1 class="mb-0">Clarence
-            <span class="text-primary">Taylor</span>
+          <h1 class="mb-0">Stephen
+            <span class="text-primary">Ngozi</span>
           </h1>
           <div class="subheading mb-5">3542 Berry Street · Cheyenne Wells, CO 80810 · (317) 585-8468 ·
             <a href="mailto:name@email.com">name@email.com</a>
@@ -42,6 +42,14 @@
                 <span class="fa-stack fa-lg">
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-book fa-stack-1x fa-inverse"></i>
                 </span>
               </a>
             </li>
@@ -83,7 +91,7 @@
               <div class="resume-content mr-auto">
                 <h3 class="mb-0">{{$training->company_name}}</h3>
                 <div class="subheading mb-3">{{$training->certification_acquired}}</div>
-                <div>Computer Science - Web Development Track</div>
+               
                 <p>{!!$training->content!!}</p>
               </div>
               <div class="resume-date text-md-right">

@@ -18,7 +18,7 @@ class ContactController extends Controller
         $request->validate([
 
             'address' => ['required','min:3','string'],
-            'phone_number' => ['required','min:3','integer'],
+            'phone_number' => ['required','min:3','integer','numeric'],
             'social_medialinks' => ['required','array'],
             'profile_img' => ['required','image'],
             'about' => ['required','min:10','string'],
@@ -72,5 +72,13 @@ class ContactController extends Controller
 
     }
 
-    
+    public function edit($slug){
+        return view ('admin.contacts.all');
+    }
+
+    public function preview($slug){
+        // $training = Training::where('slug' , $slug)->firstorfail();
+        $users = User::with("contact")->where('slug', $slug)->firstOrFail();
+        return view ('admin.contacts.all', compact('users'));
+    }
 }

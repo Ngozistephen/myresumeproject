@@ -82,6 +82,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
     // Contact Section
     Route::get('/contacts', [ContactController::class, 'index'])->name('admin.contacts.index');
     Route::post('/{user}/contacts', [ContactController::class, 'store'])->name('admin.contacts.store');
+
+    Route::get('/{user}/contacts/{slug}/edit', [ContactController::class, 'edit'])->name('admin.contacts.edit');
+    // edit is not prefilling 
+
+    Route::get('/{user}/contacts/{slug}', [ContactController::class, 'preview'])->name('admin.contacts.preview');
    
     
 });
