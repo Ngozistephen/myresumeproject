@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Porfolio;
 use App\Models\Skill;
+use App\Models\Porfolio;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SkillController extends Controller
 {
@@ -57,6 +58,8 @@ class SkillController extends Controller
 
     public function delete(Request $request, $slug){
         $skill = Skill::where('slug', $slug)->firstorfail();
+        $disk = 'public';
+        Storage::disk($disk)->delete($skill->lang_image);
         
         $skill->delete();
 

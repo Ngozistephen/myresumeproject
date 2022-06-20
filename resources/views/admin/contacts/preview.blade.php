@@ -5,6 +5,7 @@
           
 
         }
+        
 </style>
 
 
@@ -23,7 +24,8 @@
                         <div class="flex-container">
 
                                 <div class="card-header" >
-                                    <img class="user-info" id="featuredImgInputpreview" style="border-radius: 50%"></img>
+                                    <img class="user-info"   id="featuredImgInputpreview" style="border-radius: 50%"></img>
+                                    {{-- src="/storage/{{$users->profile_img}}" --}}
                                 </div>
                                 <div class="card-header" style="align-items: center">
                                     <h3 class="user-info" id="">{{Auth::user()->firstname }}  {{Auth::user()->lastname }}</h3>

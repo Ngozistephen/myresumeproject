@@ -126,7 +126,7 @@
                                     <th style="width: 20px">S/N</th>
                                     <th style="width: 200px">Name of Company</th>
                                     {{-- <th style="width: 100px">Certification Gained</th> --}}
-                                    <th style="width: 500px">Decription of Knowledge Gained</th>
+                                    <th style="width: 300px">Decription of Knowledge Gained</th>
                                     <th style="width: 100px">End Date</th>
                                     <th style="width: 100px">Start Date</th>
                                     {{-- <th style="width: 100px">Skills Used</th> --}}

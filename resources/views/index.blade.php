@@ -8,7 +8,7 @@
           <h1 class="mb-0">Stephen
             <span class="text-primary">Ngozi</span>
           </h1>
-          <div class="subheading mb-5">3542 Berry Street · Cheyenne Wells, CO 80810 · (317) 585-8468 ·
+          <div class="subheading mb-5">Nsukka, Enugu Nigeria +2348134311479
             <a href="mailto:name@email.com">name@email.com</a>
           </div>
           <p class="mb-5">I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
@@ -73,7 +73,7 @@
                 <p>{!!$porfolio->content!!}</p>
               </div>
               <div class="resume-date text-md-right">
-                <span class="text-primary">{{$porfolio->start_date}} - {{$porfolio->end_date}}</span>
+                <span class="text-primary">{{$porfolio->formated_start_date}} - {{$porfolio->formated_end_date}}</span>
               </div>
             </div>
           @endforeach
@@ -95,21 +95,10 @@
                 <p>{!!$training->content!!}</p>
               </div>
               <div class="resume-date text-md-right">
-                <span class="text-primary">{{$training->start_date}} - {{$training->end_date}}</span>
+                <span class="text-primary">{{$training->formated_start_date}} - {{$training->formated_end_date}}</span>
               </div>
             </div>
           @endforeach
-
-          {{-- <div class="resume-item d-flex flex-column flex-md-row">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">James Buchanan High School</h3>
-              <div class="subheading mb-3">Technology Magnet Program</div>
-              <p>GPA: 3.56</p>
-            </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary">August 2002 - May 2006</span>
-            </div>
-          </div> --}}
 
         </div>
       </section>

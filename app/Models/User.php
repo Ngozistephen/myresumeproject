@@ -53,6 +53,11 @@ class User extends Authenticatable
             $user->slug =  Str::slug($user->lastname) . $user->id;
             $user->save();
         });
+
+        static::updating(function($user){
+            $user->slug =  Str::slug($user->lastname) . $user->id;
+           
+        });
     }
 
 

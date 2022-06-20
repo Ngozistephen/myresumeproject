@@ -24,7 +24,7 @@
         <!-- Summernote -->
         <script src="/adminlte/plugins/summernote/summernote-bs4.min.js"></script>
 
-        {{-- <script>
+        <script>
             $(function(){
                   $("#example1").DataTable({
                   "responsive": true,
@@ -32,14 +32,14 @@
                 });
       
                 $('.delBtn').click(function(e){
-                   __confirmAction('Are You Sure ?', 'Post will be deleted').then(function(reason){
+                   __confirmAction('Are You Sure ?', 'Contacts will be deleted').then(function(reason){
                     //  user really wants to delete the post
       
                         var slug = $(this).data('slug');
                       // $(this).data('slug'); for jQuery or  this.dataset.slug (is for javascript)
       
       
-                        axios.delete(`/admin/posts/${slug}`).then(function(response){
+                        axios.delete(`/admin/contacts/${slug}`).then(function(response){
                           //all clear
       
                           window.location.reload();
@@ -55,7 +55,7 @@
                    
                 });
             })
-        </script> --}}
+        </script>
 
         <script>
           // For the Create Tag. it is done with javascript
@@ -143,21 +143,26 @@
 
       let user = $(this).data('user');
 
-      $('#compose-textarea').val(user.about);
+      $('#compose-textareaedit').summernote('code', user.about); 
 
-      $('#featuredImgInput').val(user.profile_img);
+    
+      
+      $('#featuredImgInputedit').val(user.profile_img);
+      
+      $('#addressedit').val(user.address);
+      
+      $('#phone_numberedit').val(user.phone_number);
 
-      $('#address').val(user.address);
+      console.log(user.phone_number);
+     
 
-      $('#phone_number').val(user.phone_number);
-
-      $('#social_medialinks').val(user.social_medialinks);
+      $('#social_medialinksedit').val(user.social_medialinks);
 
       let form = $('#editContactForm')
 
-      form[0].action = '/admin/contacts/'+user.slug;
-      
-      
+      // form[0].action = user.id + '/contacts'.slug;
+      form.attr('action', user.id + '/contacts'.slug);
+     
 
     });
     
@@ -214,7 +219,7 @@
 
   $(function () {
     //Add text editor
-      $('#compose-textareaEdit').summernote({
+      $('#compose-textareaedit').summernote({
         placeholder: 'tell us about yourself?',
         focus:true,
         minHeight:100
@@ -223,7 +228,7 @@
 
   })
 
-  $('#phone_numberEdit').mask();
+  $('#phone_numberedit').mask();
 </script>
 
        
@@ -295,9 +300,9 @@
                                             <button data-user= "{{$user}}" title ="Preview" type="button" href="#" class="btn  btn-sm btn-primary previewModalBtn"  data-toggle="modal" data-target="#exampleModalPreview"><i class ="fas fa-eye"></i></button>
                                             <button data-user="{{$user}}" title ="Create" type="button" href="" class="btn btn-sm btn-warning createModalBtn" data-toggle="modal" data-target="#exampleModalCreate"><i class ="fas fa-edit"></i></button>
                                             <button  data-user="{{$user}}" title ="Edit" type="button" class="btn btn-sm btn-danger editModalBtn"  data-toggle="modal" data-target="#exampleModalEdit" ><i class ="fas fa-glasses"></i></button>
-                                            <button  data-slug="#" title ="Delete" type="button" class="delBtn btn btn-sm btn-danger"><i class ="fas fa-trash"></i></button>
+                                            <button  data-slug="{{$user->slug}}" title ="Delete" type="button" class="delBtn btn btn-sm btn-danger"><i class ="fas fa-trash"></i></button>
                                         </td>
-                                    
+                                        
                                     </tr>
                                  @endforeach   
                                 

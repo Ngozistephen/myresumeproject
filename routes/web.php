@@ -84,9 +84,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
     Route::post('/{user}/contacts', [ContactController::class, 'store'])->name('admin.contacts.store');
 
     Route::get('/{user}/contacts/{slug}/edit', [ContactController::class, 'edit'])->name('admin.contacts.edit');
-    // edit is not prefilling 
+    // edit is not prefilling is working
+    
+    Route::get('/{user}/contacts/{slug}', [ContactController::class, 'update'])->name('admin.contacts.update');
 
     Route::get('/{user}/contacts/{slug}', [ContactController::class, 'preview'])->name('admin.contacts.preview');
+    // Preview is not Working
+    Route::delete('/{user}/contacts/{slug}', [ContactController::class, 'delete'])->name('admin.contacts.delete');
+    
    
     
 });

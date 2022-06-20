@@ -27,6 +27,28 @@ class Porfolio extends Model
         });
     }
 
+    public function getFormatedStartDateAttribute(){
+        if ($this->start_date) {
+            if ($this->start_date->diffInHours() > 24) {
+                return $this->start_date->toFormattedDateString('d/m/Y');
+            }
+        }
+
+        return  $this->start_date->diffForHumans();
+
+    }
+    public function getFormatedEndDateAttribute(){
+        if ($this->end_date) {
+            if ($this->end_date->diffInHours() > 24) {
+                return $this->end_date->toFormattedDateString('d/m/Y');
+            }
+        }
+        // $today = Carbon::today()->toDateString();
+
+        return  $this->end_date->diffForHumans();
+
+    }
+
 
     public function skills(){
         return $this->belongsToMany(Skill::class, 'skill_porfolio');
