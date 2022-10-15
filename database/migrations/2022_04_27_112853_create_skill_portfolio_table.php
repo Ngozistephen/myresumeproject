@@ -15,9 +15,12 @@ class CreateSkillPortfolioTable extends Migration
     {
         Schema::table('skills', function (Blueprint $table) {
             $table->dropForeign(['porfolio_id']);
+        });
+        Schema::table('skills', function (Blueprint $table) {
+           
             $table->dropColumn('porfolio_id');
         });
-
+        
         // many to many relationship between the 
         Schema::create('skill_porfolio', function (Blueprint $table) {
             $table->id();
