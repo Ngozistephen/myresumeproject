@@ -85,7 +85,7 @@
         <div class="my-auto">
           <h2 class="mb-5">Education</h2>
 
-          @foreach ($training as $training)
+          @foreach ($trainings as $training)
               
             <div class="resume-item d-flex flex-column flex-md-row mb-5">
               <div class="resume-content mr-auto">

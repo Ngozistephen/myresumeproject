@@ -18,7 +18,7 @@ class CreateContactsTable extends Migration
             $table->string('address');
             $table->bigInteger('phone_number')->unique();
             $table->timestamps();
-            $table->json('social_medialinks');
+            $table->text('social_medialinks');
 
             
             $table->unsignedBigInteger('user_id')->unique();
