@@ -31,7 +31,6 @@
     {{-- Pnotify  css--}}
     @include('plugins.pnotify.styles')
 
-   
         <style>
             /* Highlighting the sidebar */
              [class*="sidebar-dark-"] .nav-sidebar > .nav-item:hover > .nav-link{
@@ -40,6 +39,7 @@
              }
 
         </style
+   
 
     
 
@@ -62,13 +62,13 @@
     
         
 
-        {{-- <!-- Control Sidebar -->
+             <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
         </aside>
-        <!-- /.control-sidebar --> --}}
+        <!-- /.control-sidebar --> -
     </div>
-    <!-- ./wrapper -->
+    
 
     <!-- jQuery -->
     <script src="/adminlte/plugins/jquery/jquery.min.js"></script>
@@ -76,13 +76,13 @@
     <script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="/adminlte/dist/js/adminlte.js"></script>
-    {{-- <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="/adminlte/dist/js/pages/dashboard.js"></script> --}}
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="/adminlte/dist/js/pages/dashboard.js"></script> 
     <!-- AdminLTE for demo purposes -->
     <script src="/adminlte/dist/js/demo.js"></script>
 
     <script src="/js/es6_object_polyfill.js"></script>
-    {{-- Axois  --}}
+    /* {{-- Axois  --}} */
     <script src="/js/axios.min.js"></script>
     
 
