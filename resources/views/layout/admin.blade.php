@@ -30,7 +30,7 @@
     
     {{-- Pnotify  css--}}
     @include('plugins.pnotify.styles')
-
+{{-- 
         <style>
             /* Highlighting the sidebar */
              [class*="sidebar-dark-"] .nav-sidebar > .nav-item:hover > .nav-link{
@@ -38,7 +38,7 @@
                  color: white;
              }
 
-        </style
+        </style --}}
 
     
 
